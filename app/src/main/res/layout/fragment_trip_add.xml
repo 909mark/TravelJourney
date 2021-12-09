@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/add_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/trip_name" />
+
+    <EditText
+        android:id="@+id/add_destination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/trip_destination"
+        android:minHeight="48dp" />
+
+    <RadioGroup
+        android:id="@+id/add_radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/add_type_seaside"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/seaside" />
+
+        <RadioButton
+            android:id="@+id/add_type_citybreak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/city_break" />
+
+        <RadioButton
+            android:id="@+id/add_type_mountain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mountains" />
+    </RadioGroup>
+
+    <com.google.android.material.slider.Slider
+        android:valueFrom="0"
+        android:valueTo="5000"
+        android:value="100"
+        android:theme="@style/MyMaterialTheme"
+        android:id="@+id/add_price"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content" />
+
+
+    <RatingBar
+        android:id="@+id/add_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:id="@+id/add_start_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pick_start_date"
+            android:minHeight="48dp" />
+
+        <TextView
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:id="@+id/add_end_date"
+            android:text="@string/pick_end_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add_trip_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save_trip"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
