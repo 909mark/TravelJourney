@@ -4,6 +4,7 @@ package com.example.finalproject_v2.ui.home;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,9 +26,11 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
         private final TextView tripDestination;
         private final CardView cardView;
         private final ImageView imageView;
+        private final CheckBox checkBox;
 
         private TripViewHolder(View itemView)  {
             super(itemView);
+            checkBox = itemView.findViewById(R.id.checkbox);
             imageView = itemView.findViewById(R.id.tripImageView);
             tripName = itemView.findViewById(R.id.tripNameView);
             tripDestination = itemView.findViewById(R.id.tripDestinationView);
@@ -59,6 +62,12 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
     @Override
     public void onBindViewHolder(TripViewHolder holder, int position) {
         if (trips != null) {
+            holder.checkBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    holder.checkBox.setChecked(true);
+                }
+            });
             Trip currentTrip = trips.get(position);
             holder.getTripName().setText(currentTrip.getName());
             holder.getTripDestination().setText(currentTrip.getDestination());

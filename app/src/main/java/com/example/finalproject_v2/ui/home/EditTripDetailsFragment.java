@@ -100,7 +100,7 @@ public class EditTripDetailsFragment extends Fragment {
     void setViews(Trip trip) {
         tripName.setText(trip.getName());
         tripDestination.setText(trip.getDestination());
-        tripPrice.setValue(trip.getPrice());
+        tripPrice.setValue((float)trip.getPrice());
         tripRating.setRating(trip.getRating());
         pickStartDate.setText(simpleDateFormat.format(trip.getStartDate()));
         pickEndDate.setText(simpleDateFormat.format(trip.getEndDate()));

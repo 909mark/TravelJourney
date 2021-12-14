@@ -1,87 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/purple_200"
     android:orientation="vertical">
 
     <EditText
         android:id="@+id/add_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/trip_name" />
+        android:layout_marginTop="28dp"
+        android:backgroundTint="#790e8b"
+        android:hint="@string/trip_name"
+        android:minHeight="48dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/add_destination"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#790e8b"
         android:hint="@string/trip_destination"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_name" />
 
-    <RadioGroup
-        android:id="@+id/add_radio_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/add_type_seaside"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/seaside" />
-
-        <RadioButton
-            android:id="@+id/add_type_citybreak"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/city_break" />
-
-        <RadioButton
-            android:id="@+id/add_type_mountain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mountains" />
-    </RadioGroup>
 
     <com.google.android.material.slider.Slider
-        android:valueFrom="0"
-        android:valueTo="5000"
-        android:value="100"
-        android:theme="@style/MyMaterialTheme"
         android:id="@+id/add_price"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content" />
-
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:stepSize="100.0"
+        android:theme="@style/MyMaterialTheme"
+        android:valueFrom="0.0"
+        android:valueTo="5000.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_rating"
+        app:thumbColor="#790e8b"
+        app:trackColor="@color/white" />
 
     <RatingBar
         android:id="@+id/add_rating"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_margin="10dp"
-            android:gravity="center"
-            android:id="@+id/add_start_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pick_start_date"
-            android:minHeight="48dp" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#790e8b"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_destination" />
 
-        <TextView
-            android:layout_margin="10dp"
-            android:gravity="center"
-            android:id="@+id/add_end_date"
-            android:text="@string/pick_end_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minHeight="48dp" />
-    </LinearLayout>
 
     <Button
         android:id="@+id/add_trip_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/save_trip"/>
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="#790e8b"
+        android:text="@string/save_trip"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:drawableStart="@android:drawable/ic_menu_save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+    <TextView
+        android:id="@+id/add_start_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="60dp"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:text="@string/pick_start_date"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_radio_group" />
+
+    <TextView
+        android:id="@+id/add_end_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:text="@string/pick_end_date"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_radio_group" />
+
+
+    <RadioGroup
+        android:id="@+id/add_radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_price">
+
+
+        <RadioButton
+            android:id="@+id/add_type_seaside"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:buttonTint="#790e8b"
+            android:text="@string/seaside"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF" />
+
+        <RadioButton
+            android:id="@+id/add_type_citybreak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:buttonTint="#790e8b"
+            android:text="@string/city_break"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF" />
+
+        <RadioButton
+            android:id="@+id/add_type_mountain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:buttonTint="#790e8b"
+            android:text="@string/mountains"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF" />
+
+    </RadioGroup>
+</androidx.constraintlayout.widget.ConstraintLayout>
