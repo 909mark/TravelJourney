@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.finalproject_v2.R;
@@ -138,15 +139,18 @@ public class AddTripDetailsFragment extends Fragment {
                     endDate = Calendar.getInstance().getTime();
                 }
 
-                Trip trip = new Trip(0, name, destination, tripType, price, startDate, endDate, rating);
+                Trip trip = new Trip(0, name, destination, tripType, price, startDate, endDate, rating, false);
                 tripViewModel.insert(trip);
                 Log.d("new trip inserted", trip.toString());
 
                 HomeFragment fragment = new HomeFragment();
-                ((AppCompatActivity) v.getContext()).getSupportFragmentManager()
-                        .beginTransaction()
+                FragmentManager fm = ((AppCompatActivity) v.getContext()).getSupportFragmentManager();
+                fm.beginTransaction()
                         .replace(R.id.fragment_holder, fragment)
                         .commit();
+                fm.popBackStackImmediate();
+
+
             }
         });
     }

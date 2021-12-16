@@ -1,6 +1,11 @@
 package com.example.finalproject_v2;
 
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -9,12 +14,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Bundle;
-import android.view.MenuItem;
-
+import com.example.finalproject_v2.ui.aboutus.AboutUs;
+import com.example.finalproject_v2.ui.contact.Contact;
 import com.example.finalproject_v2.ui.home.HomeFragment;
-import com.example.finalproject_v2.ui.gallery.GalleryFragment;
-import com.example.finalproject_v2.ui.slider.SliderFragment;
+import com.example.finalproject_v2.ui.share.Share;
 import com.google.android.material.navigation.NavigationView;
 
 // TODO fragment transition animations
@@ -91,14 +94,15 @@ public class MainActivity extends AppCompatActivity {
         Class fragmentClass;
         switch (menuItem.getItemId()) {
 
-            case R.id.nav_gallery:
-                fragmentClass = GalleryFragment.class;
+            case R.id.nav_about_us:
+                fragmentClass = AboutUs.class;
                 break;
-
-            case R.id.nav_slideshow:
-                fragmentClass = SliderFragment.class;
+            case R.id.nav_contact:
+                fragmentClass = Contact.class;
                 break;
-
+            case R.id.nav_share:
+                fragmentClass = Share.class;
+                break;
             default:
                 fragmentClass = HomeFragment.class;
         }
@@ -140,7 +144,21 @@ public class MainActivity extends AppCompatActivity {
         } else if (mFragmentManager.getBackStackEntryCount() > 0) {
             mFragmentManager.popBackStack();
         } else {
-            super.onBackPressed();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Are you sure you want to exit?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            MainActivity.this.finish();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
         }
     }
 }

@@ -118,9 +118,11 @@ public class ViewTripDetailsFragment extends Fragment {
                             + response.body().getWeather().get(0).getDescription();
                     tripWeather.setText(result);
                 } else {
-                    if (response.code() == 404)
-                        Toast.makeText(getContext(),"City not found in database",
+                    if (response.code() == 404) {
+                        tripWeather.setText("City not found in database");
+                        Toast.makeText(getContext(), "City not found in database",
                                 Toast.LENGTH_LONG).show();
+                    }
                     else
                         Toast.makeText(getContext(),"An error occurred, response code " +
                                 response.code()+" ",Toast.LENGTH_LONG).show();

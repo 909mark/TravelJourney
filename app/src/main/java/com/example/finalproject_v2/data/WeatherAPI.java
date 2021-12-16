@@ -9,3 +9,4 @@ public interface WeatherAPI {
     Call<Response> getWeather(@Query("q") String cityName,
                              @Query("appid") String apiKey);
 }
+

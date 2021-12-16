@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.finalproject_v2.R;
@@ -110,7 +111,7 @@ public class EditTripDetailsFragment extends Fragment {
     }
 
     void setupDatePicker() {
-        // TODO get year, month, day from trip
+        // TODO verify startDate < endDate
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
@@ -166,15 +167,16 @@ public class EditTripDetailsFragment extends Fragment {
                     endDate = Calendar.getInstance().getTime();
                 }
 
-                Trip editedTrip = new Trip(trip.getId(), name, destination, tripType, price, startDate, endDate, rating);
+                Trip editedTrip = new Trip(trip.getId(), name, destination, tripType, price, startDate, endDate, rating, trip.isFav());
                 tripViewModel.update(editedTrip);
                 Log.d("trip edited", editedTrip.toString());
 
                 HomeFragment fragment = new HomeFragment();
-                ((AppCompatActivity) v.getContext()).getSupportFragmentManager()
-                        .beginTransaction()
+                FragmentManager fm = ((AppCompatActivity) v.getContext()).getSupportFragmentManager();
+                fm.beginTransaction()
                         .replace(R.id.fragment_holder, fragment)
                         .commit();
+                fm.popBackStackImmediate();
             }
         });
 
@@ -185,10 +187,11 @@ public class EditTripDetailsFragment extends Fragment {
                 tripViewModel.delete(trip);
 
                 HomeFragment fragment = new HomeFragment();
-                ((AppCompatActivity) v.getContext()).getSupportFragmentManager()
-                        .beginTransaction()
+                FragmentManager fm = ((AppCompatActivity) v.getContext()).getSupportFragmentManager();
+                fm.beginTransaction()
                         .replace(R.id.fragment_holder, fragment)
                         .commit();
+                fm.popBackStackImmediate();
             }
 
         });

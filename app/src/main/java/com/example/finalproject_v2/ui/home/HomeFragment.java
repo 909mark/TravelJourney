@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -48,9 +47,8 @@ public class HomeFragment extends Fragment {
         recyclerViewTrips.setLayoutManager(new LinearLayoutManager(root.getContext()));
         tripAdapter = new TripAdapter();
         recyclerViewTrips.setAdapter(tripAdapter);
-        setRecyclerViewListener();
         // Add an observer on the LiveData returned by getAllTrips() function
-        // The onChanged() method fires when the observed data changes and the activity is
+        // The onChanged() method fires when the observed data changes and the activity(?) is
         // in the foreground.
         tripViewModel.getAllTrips().observe(getViewLifecycleOwner(), new Observer<List<Trip>>() {
             @Override
@@ -80,41 +78,5 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-    private void setRecyclerViewListener() {
-        recyclerViewTrips.addOnItemTouchListener(new RecyclerTouchListener(recyclerViewTrips.getContext(),
-                recyclerViewTrips, new TripsClickListener() {
-            @Override
-            public void onClick(View view, final int position) {
 
-                Toast.makeText(recyclerViewTrips.getContext(), "Single touch " + position,
-                        Toast.LENGTH_SHORT).show();
-
-                ViewTripDetailsFragment fragment = new ViewTripDetailsFragment();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("Trip", tripAdapter.getTrips().get(position));
-                fragment.setArguments(bundle);
-                ((AppCompatActivity) view.getContext()).getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_holder, fragment)
-                        .addToBackStack("")
-                        .commit();
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-                Toast.makeText(recyclerViewTrips.getContext(), "Long touch " + position,
-                        Toast.LENGTH_SHORT).show();
-
-                EditTripDetailsFragment fragment = new EditTripDetailsFragment();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("Trip", tripAdapter.getTrips().get(position));
-                fragment.setArguments(bundle);
-                ((AppCompatActivity) view.getContext()).getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_holder, fragment)
-                        .addToBackStack("")
-                        .commit();
-            }
-        }));
-    }
 }
